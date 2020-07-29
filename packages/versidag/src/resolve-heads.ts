@@ -48,7 +48,7 @@ const resolveHeads = async (headCids, config, limit = Infinity) =>
 		// If this is a head, add its parents to the list of mandatory nodes to be visited
 		if (entry.cid === entry.headCid)
 		{
-			entry.node.parents.forEach((cid) => mandatoryCids.add(cid));
+			entry.node.parents?.forEach?.((cid) => mandatoryCids.add(cid));
 		}
 		else
 		{

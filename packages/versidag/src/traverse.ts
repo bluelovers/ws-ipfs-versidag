@@ -6,7 +6,7 @@ const createTraverser = (config) => async (headCids, iteratorFn, addToStackFn = 
 {
 	const stack = [];
 
-	const expand = (cids, child) => pMap(cids, async (cid) =>
+	const expand = (cids, child) => pMap(cids ?? [], async (cid) =>
 	{
 		const entry = {
 			cid,
