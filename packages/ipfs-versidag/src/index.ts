@@ -1,48 +1,60 @@
 import createVersidag from 'versidag';
-import pTimeout from 'p-timeout';
 
-const maybeTimeout = (promise, timeout) =>
-    timeout != null ? pTimeout(promise, timeout) : promise;
+import CID from 'cids';
+import { toCIDLinkObject, toCIDString } from './util/toCIDString';
 
-const createReadNode = (ipfs) => async (cid, config) => {
-    const result = await maybeTimeout(ipfs.dag.get(cid), config.readTimeout);
+const createReadNode = (ipfs) => async (cid, config?) =>
+{
+	console.dir(cid)
 
-    const { parents = [], ...data } = result.value;
+	const result = await ipfs.dag.get(toCIDString(cid), config);
 
-    return {
-        parents: parents.map((cid) => cid.toBaseEncodedString()),
-        ...data,
-    };
+	console.log(`createReadNode`, result, cid, config);
+
+	return result.value;
 };
 
-const createWriteNode = (ipfs) => async (node, config) => {
-    const { parents, ...dagNode } = node;
+const createWriteNode = (ipfs) => async (node, config) =>
+{
+	let { parents, ...dagNode } = node;
 
-    if (parents.length) {
-        dagNode.parents = parents.map((cid) => ({ '/': cid }));
-    }
+	if (parents?.length)
+	{
+		dagNode = {
+			parents,
+			...dagNode,
+		};
+	}
 
-    const cid = await maybeTimeout(ipfs.dag.put(dagNode), config.writeTimeout);
+	const cid = await ipfs.dag.put(dagNode, config);
 
-    return cid.toBaseEncodedString();
+	console.log(`createWriteNode`, cid, dagNode, config);
+
+	return toCIDLinkObject(cid);
 };
 
-const createIpfsVersidag = (headCids, config) => {
-    // Allow heads to be optinal
-    if (!Array.isArray(headCids)) {
-        config = headCids;
-        headCids = [];
-    }
+export function createIpfsVersidag(headCids, config?)
+{
+	// Allow heads to be optinal
+	if (!Array.isArray(headCids))
+	{
+		config = headCids;
+		headCids = [];
+	}
 
-    const { ipfs, ...rest } = config;
+	const { ipfs, ...rest } = config;
 
-    config = {
-        ...rest,
-        readNode: createReadNode(ipfs),
-        writeNode: createWriteNode(ipfs),
-    };
+	headCids = headCids.map(toCIDLinkObject);
 
-    return createVersidag(headCids, config);
-};
+	console.log(`createIpfsVersidag`, headCids, config);
+
+	config = {
+		...rest,
+		readNode: createReadNode(ipfs),
+		writeNode: createWriteNode(ipfs),
+	};
+
+	return createVersidag(headCids, config);
+}
 
 export default createIpfsVersidag;
