@@ -1,15 +1,12 @@
 import createVersidag from 'versidag';
-
 import CID from 'cids';
 import { toCIDLinkObject, toCIDString } from './util/toCIDString';
 
 const createReadNode = (ipfs) => async (cid, config?) =>
 {
-	console.dir(cid)
-
 	const result = await ipfs.dag.get(toCIDString(cid), config);
 
-	console.log(`createReadNode`, result, cid, config);
+	//console.log(`createReadNode`, result, cid, config);
 
 	return result.value;
 };
@@ -28,7 +25,7 @@ const createWriteNode = (ipfs) => async (node, config) =>
 
 	const cid = await ipfs.dag.put(dagNode, config);
 
-	console.log(`createWriteNode`, cid, dagNode, config);
+	//console.log(`createWriteNode`, cid, dagNode, node, config);
 
 	return toCIDLinkObject(cid);
 };
@@ -46,7 +43,7 @@ export function createIpfsVersidag(headCids, config?)
 
 	headCids = headCids.map(toCIDLinkObject);
 
-	console.log(`createIpfsVersidag`, headCids, config);
+	//console.log(`createIpfsVersidag`, headCids, config);
 
 	config = {
 		...rest,

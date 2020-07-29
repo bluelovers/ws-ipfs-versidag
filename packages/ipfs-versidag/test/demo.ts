@@ -15,36 +15,21 @@ IPFS.create().then(async (ipfs) =>
 			tieBreaker: (node1, node2) => node1.meta - node2.meta,
 		});
 
-		console.dir(myVersidag, {
-			depth: null,
-			colors: true,
-		})
+		console.log(`myVersidag`, myVersidag)
 
 		const myVersidagA = await myVersidag.add(new CID(`QmP8jTG1m9GSDJLCbeWhVSVgEzCPPwXRdCRuJtQ5Tz9Kc9`), 1);
-		console.dir(myVersidagA, {
-			depth: null,
-			colors: true,
-		})
+		console.log(`myVersidagA`, myVersidagA)
 		const myVersidagB = await myVersidagA.add(new CID(`QmWXShtJXt6Mw3FH7hVCQvR56xPcaEtSj4YFSGjp2QxA4v`), 2);
-		console.dir(myVersidagB, {
-			depth: null,
-			colors: true,
-		})
+		console.log(`myVersidagB`, myVersidagB)
 		const myVersidagC = await myVersidagA.add(new CID('QmUh6QSTxDKX5qoNU1GoogbhTveQQV9JMeQjfFVchAtd5Q'), 3);
-		console.dir(myVersidagC, {
-			depth: null,
-			colors: true,
-		})
+		console.log(`myVersidagC`, myVersidagC)
 		console.log(0, `-----------------`)
 		const myVersidagD = await myVersidagB.merge(myVersidagC.headCids, new CID('QmY7zFVFh5pt5YjDVBrJmfWYvAmoDvKqtZtpJtkQNZk1cq'));
-		console.dir(myVersidagD, {
-			depth: null,
-			colors: true,
-		})
+		console.log(`myVersidagD`, myVersidagD)
 
 		console.log(1, `-----------------`)
 		let cid: CID = myVersidagD.headCids[0];
-		console.log(cid)
+		console.log(`myVersidagD.headCids[0]`, cid)
 
 		const versions = await myVersidagD.resolve();
 		// [
@@ -54,13 +39,13 @@ IPFS.create().then(async (ipfs) =>
 		//   { version: 'Hi', meta: 1 }
 		// ]
 
-//	console.dir(versions, {
-//		depth: null,
-//		colors: true,
-//	})
+	console.log(`myVersidagD.resolve()`, versions)
 
 		return ipfs.stop();
 	})
-	.catch(e => console.error(e))
-	.finally(() => process.exit())
+	.catch(e => {
+		console.error(e)
+		process.exit();
+	})
+	//.finally(() => process.exit())
 ;
