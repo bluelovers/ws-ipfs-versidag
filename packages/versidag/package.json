@@ -36,7 +36,7 @@
   },
   "scripts": {
     "test": "jest",
-    "preversion": "yarn run prepublishOnly",
+    "preversion": "yarn run test",
     "prepublishOnly_": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
