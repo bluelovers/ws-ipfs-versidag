@@ -1,5 +1,5 @@
 {
-  "name": "ipfs-versidag",
+  "name": "@lazy-ipfs/ipfs-versidag",
   "version": "0.1.1",
   "description": "Concurrent version history based on a Merkle-DAG on top of IPFS and IPLD",
   "keywords": [
@@ -48,7 +48,11 @@
     "cids": "^0.8.3",
     "versidag": "^0.2.1"
   },
+  "devDependencies": {},
   "peerDependencies": {
     "ipfs": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
