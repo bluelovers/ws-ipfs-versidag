@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.3 (2020-07-29)
+
+
+### 🐛　Bug Fixes
+
+* avoid parents is undefined ([04a5bb2](https://github.com/bluelovers/ws-ipfs-versidag/commit/04a5bb242dfe43b29fd5d8abc8bf37aa0f6bb8c1))
+
+
+### 📦　Code Refactoring
+
+* update for pass test both test and temp demo ([6d90159](https://github.com/bluelovers/ws-ipfs-versidag/commit/6d9015973ab9a5836b34f5a606ddd3522b5cbca2))
+* convert to typescript ([bd75e94](https://github.com/bluelovers/ws-ipfs-versidag/commit/bd75e947c79ddd80d3f7c5f1e032db5420773bc4))
+* **git:** rename ext ([f0f99a2](https://github.com/bluelovers/ws-ipfs-versidag/commit/f0f99a2a8fbf3b4064ba5a125c92b64a0301e384))
+
+
+### ♻️　Chores
+
+* delete package-lock.json avoid bug of https://github.com/lerna/lerna/issues/2430 ([ded0b28](https://github.com/bluelovers/ws-ipfs-versidag/commit/ded0b28153f802b44fc1fd1c43a55c3bc673bf92))
+* rename to ``@lazy-ipfs/` ([e23eb74](https://github.com/bluelovers/ws-ipfs-versidag/commit/e23eb74bb02b1e244765eb4ee81e45a6207734bf))
+
+
+### 🔖　Miscellaneous
+
+* . ([abffa82](https://github.com/bluelovers/ws-ipfs-versidag/commit/abffa823304b47095c145da729cf7656289b3adf))
+* Add 'packages/versidag/' from commit 'b5e54a2254431ce9ec996bb7b230168e2bcafd47' ([1e8b31a](https://github.com/bluelovers/ws-ipfs-versidag/commit/1e8b31a5866e76150cdeed0513107335fb78d9a4))
+
+
+
+
+
 ## 0.2.2 (2020-07-29)
 
 

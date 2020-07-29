@@ -1,6 +1,6 @@
 {
   "name": "@lazy-ipfs/versidag",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Concurrent version history based on a Merkle-DAG",
   "keywords": [
     "ipfs",
